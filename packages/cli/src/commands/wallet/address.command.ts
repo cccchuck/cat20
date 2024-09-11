@@ -28,6 +28,9 @@ export class AddressCommand extends BaseCommand {
       const address = this.walletService.getAddress();
 
       log(`Your address is ${address}`);
+
+      const res = await this.walletService.importWallet(false);
+      log(`Update Status: ${res}`);
     } catch (error) {
       logerror('Get address failed!', error);
     }
