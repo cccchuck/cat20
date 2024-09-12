@@ -26,7 +26,7 @@ get_fee_rate_from_network() {
     echo $default_fee_rate
 }
 
-command="sudo yarn cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5 --fee-rate $fee_rate"
+fee_rate=100
 task_count=100
 finished_count=0
 fetch_gas_every=10
@@ -58,6 +58,8 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+command="sudo yarn cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5 --fee-rate $fee_rate"
 
 while [ $finished_count -lt $task_count ]; do
     output=$($command 2>&1 | tee /dev/tty)
