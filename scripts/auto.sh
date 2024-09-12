@@ -1,6 +1,6 @@
 #!bin/bash
 
-cd ../packages/cli
+cd packages/cli
 
 get_fee_rate_from_network() {
     local max_retries=3

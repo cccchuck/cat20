@@ -1,6 +1,6 @@
 #!bin/bash
 
-cd ../packages/cli
+cd packages/cli
 
 WALLET_FILE="wallet.json"
 
