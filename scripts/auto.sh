@@ -26,7 +26,7 @@ get_fee_rate_from_network() {
     echo $default_fee_rate
 }
 
-fee_rate=100
+fee_rate=$(get_fee_rate_from_network)
 task_count=100
 finished_count=0
 fetch_gas_every=10
