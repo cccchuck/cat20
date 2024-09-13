@@ -29,7 +29,6 @@ get_fee_rate_from_network() {
 fee_rate=$(get_fee_rate_from_network)
 task_count=100
 finished_count=0
-fetch_gas_every=5
 
 # Parse argu
 while [[ $# -gt 0 ]]; do
@@ -61,11 +60,11 @@ done
 
 
 while [ $finished_count -lt $task_count ]; do
+    fee_rate=$(get_fee_rate_from_network)
     if [ $fee_rate -gt 4000 ]; then
         echo "Current Gas: $fee_rate; Skip"
         echo ""
         sleep 10
-        fee_rate=$(get_fee_rate_from_network)
         continue
     fi
 
@@ -86,12 +85,6 @@ while [ $finished_count -lt $task_count ]; do
     else
         echo "Unknown Error: $output"
         continue
-    fi
-
-    if (( finished_count % fetch_gas_every == 0 )); then
-        fee_rate=$(get_fee_rate_from_network)
-        echo "Fractal Gas Now: $fee_rate"
-        command="sudo yarn cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5 --fee-rate $fee_rate"
     fi
 
     sleep 1
