@@ -59,13 +59,21 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-command="sudo yarn cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5 --fee-rate $fee_rate"
 
 while [ $finished_count -lt $task_count ]; do
+    if [ $fee_rate -gt 4000 ]; then
+        echo "Current Gas: $fee_rate; Skip"
+        echo ""
+        sleep 10
+        fee_rate=$(get_fee_rate_from_network)
+        continue
+
+    command="sudo yarn cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5 --fee-rate $fee_rate"
     output=$($command 2>&1 | tee /dev/tty)
 
     if [[ "$output" == *"too-long-mempool-chain"* ]]; then
         echo "Error：too-long-mempool-chain，skip and continue"
+        sleep 10
         continue
     elif [[ "$output" == *"mint token [CAT] failed"* ]]; then
         echo "Ignore Error：mint token [CAT] failed"
