@@ -10,7 +10,7 @@ get_fee_rate_from_network() {
     while [ $retry_count -lt $max_retries ]; do
         local response=$(curl -s -f "https://explorer.unisat.io/fractal-mainnet/api/bitcoin-info/fee")
         if [ $? -eq 0 ]; then
-            local fee_rate=$(echo "$response" | grep -o '"halfHourFee":[0-9]*' | grep -o '[0-9]*')
+            local fee_rate=$(echo "$response" | grep -o '"fastestFee":[0-9]*' | grep -o '[0-9]*')
             if [ -n "$fee_rate" ] && [ $fee_rate -gt 0 ]; then
                 echo $fee_rate
                 return 0
