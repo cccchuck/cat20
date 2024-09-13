@@ -29,7 +29,7 @@ get_fee_rate_from_network() {
 fee_rate=$(get_fee_rate_from_network)
 task_count=100
 finished_count=0
-fetch_gas_every=10
+fetch_gas_every=5
 
 # Parse argu
 while [[ $# -gt 0 ]]; do
