@@ -1,4 +1,3 @@
-cd ..
 sudo git pull
 
 sudo yarn build
