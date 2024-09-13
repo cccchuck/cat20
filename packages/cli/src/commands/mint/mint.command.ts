@@ -143,6 +143,11 @@ export class MintCommand extends BoardcastCommand {
                   : amount;
             }
 
+            if (amount !== 500n) {
+              console.error(`Fuck amount: ${amount}`);
+              return;
+            }
+
             const mintTxIdOrErr = await openMint(
               this.configService,
               this.walletService,
