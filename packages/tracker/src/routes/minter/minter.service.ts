@@ -61,7 +61,7 @@ export class MinterService {
           spendTxid: IsNull(),
           blockHeight: LessThanOrEqual(lastProcessedHeight),
         },
-        order: { createdAt: 'ASC' },
+        order: { blockHeight: 'DESC' },
         skip: offset,
         take: limit,
       });

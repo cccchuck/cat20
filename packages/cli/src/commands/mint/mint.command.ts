@@ -104,7 +104,7 @@ export class MintCommand extends BoardcastCommand {
             return;
           }
 
-          const offset = getRandomInt(count - 1);
+          const offset = getRandomInt(500);
           const minter = await getTokenMinter(
             this.configService,
             this.walletService,
